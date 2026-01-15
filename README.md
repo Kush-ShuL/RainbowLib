@@ -284,6 +284,21 @@ Minecraft NBT文件处理功能：
 - `HashUtils.constantTimeEquals()` - 常量时间比较
 - `HashUtils.verifyHash()` - 哈希验证
 
+#### 椭圆曲线密码 (Security.ECCUtils)
+- `ECCUtils.generateKeyPair()` - 默认曲线生成密钥对 (secp256r1)
+- `ECCUtils.generateKeyPair(String curve)` - 指定曲线生成密钥对
+- `ECCUtils.generateKeyPair(int keySize)` - 指定密钥长度生成密钥对
+- `ECCUtils.encrypt()` - ECIES加密
+- `ECCUtils.decrypt()` - ECIES解密
+- `ECCUtils.sign()` - ECDSA签名
+- `ECCUtils.verify()` - ECDSA验签
+- `ECCUtils.generateKeyStrings()` - 生成Base64编码的密钥对字符串
+- `ECCUtils.getKeyPairFromStrings()` - 从字符串还原密钥对
+- `ECCUtils.getSupportedCurves()` - 获取支持的曲线列表
+- `ECCUtils.getKeySize()` - 获取指定曲线的密钥长度
+- `ECCUtils.getCurveFromPrivateKey()` - 从私钥获取曲线名称
+- `ECCUtils.getCurveFromPublicKey()` - 从公钥获取曲线名称
+
 ## 使用示例
 
 ### 基本使用
@@ -307,6 +322,7 @@ import top.mc_plfd_host.Algorithms.StringUtils;
 import top.mc_plfd_host.Security.BaseEncoding;
 import top.mc_plfd_host.Security.CryptoUtils;
 import top.mc_plfd_host.Security.HashUtils;
+import top.mc_plfd_host.Security.ECCUtils;
 
 public class Example {
     private static final Logger logger = LoggerFactory.getLogger(Example.class);
@@ -429,6 +445,18 @@ public class Example {
         CryptoUtils.PasswordStrength strength = CryptoUtils.checkPasswordStrength("MyPassword123!");
         logger.info("Password strength: " + strength.getMessage());
         
+        // ECC椭圆曲线密码演示
+        ECCUtils.ECCKeyPair eccKeyPair = ECCUtils.generateKeyPair();
+        String eccMessage = "Secret Message";
+        String eccEncrypted = ECCUtils.encrypt(eccMessage, eccKeyPair);
+        String eccDecrypted = ECCUtils.decrypt(eccEncrypted, eccKeyPair);
+        logger.info("ECC ECIES: " + eccMessage + " -> " + eccEncrypted + " -> " + eccDecrypted);
+        
+        String dataToSign = "Data to sign";
+        String signature = ECCUtils.sign(dataToSign, eccKeyPair);
+        boolean isValid = ECCUtils.verify(dataToSign, signature, eccKeyPair);
+        logger.info("ECDSA signature valid: " + isValid);
+        
         // 关闭输入
         Input.close();
         
@@ -504,6 +532,42 @@ CryptoUtils.PasswordStrength strength3 = CryptoUtils.checkPasswordStrength("Very
 
 // 随机密钥生成
 String randomKey = CryptoUtils.generateRandomKey(32);
+
+// ECC椭圆曲线密码示例
+// 生成ECC密钥对（默认secp256r1曲线）
+ECCUtils.ECCKeyPair ecKeyPair = ECCUtils.generateKeyPair();
+
+// 使用指定曲线生成密钥对
+ECCUtils.ECCKeyPair ecKeyPair384 = ECCUtils.generateKeyPair("secp384r1");
+
+// 生成Base64编码的密钥字符串
+String[] keyStrings = ECCUtils.generateKeyStrings();
+String publicKeyStr = keyStrings[0];
+String privateKeyStr = keyStrings[1];
+
+// 从字符串还原密钥对
+ECCUtils.ECCKeyPair restoredKeyPair = ECCUtils.getKeyPairFromStrings(publicKeyStr, privateKeyStr);
+
+// 获取支持的曲线列表
+String[] curves = ECCUtils.getSupportedCurves();
+logger.info("Supported curves: " + String.join(", ", curves));
+
+// ECIES加密/解密
+String eccMessage = "Secret ECC Message";
+String eccEncrypted = ECCUtils.encrypt(eccMessage, ecKeyPair);
+String eccDecrypted = ECCUtils.decrypt(eccEncrypted, ecKeyPair);
+logger.info("ECC ECIES: " + eccMessage + " -> " + eccEncrypted + " -> " + eccDecrypted);
+
+// ECDSA签名/验签
+String dataToSign = "Data to sign";
+String signature = ECCUtils.sign(dataToSign, ecKeyPair);
+boolean isValid = ECCUtils.verify(dataToSign, signature, ecKeyPair);
+logger.info("ECDSA signature valid: " + isValid);
+
+// 获取密钥信息
+String curve = ecKeyPair.getCurve();
+int keySize = ecKeyPair.getKeySize();
+logger.info("Curve: " + curve + ", Key size: " + keySize);
 ```
 
 ### 算法工具包示例
@@ -793,7 +857,8 @@ src/main/java/top/mc_plfd_host/
 ├── Security/
 │   ├── BaseEncoding.java    # Base编码工具
 │   ├── CryptoUtils.java     # 加密工具
-│   └── HashUtils.java      # 哈希工具
+│   ├── HashUtils.java      # 哈希工具
+│   └── ECCUtils.java       # 椭圆曲线密码工具
 ├── Configs/
 │   ├── Json.java           # JSON处理
 │   ├── Yaml.java           # YAML处理
