@@ -93,4 +93,34 @@ public class Yaml {
             Print.error("Failed to convert YAML to JSON: " + e.getMessage());
         }
     }
+    
+    @SuppressWarnings("unchecked")
+    public static String get(String filePath, String key) {
+        try {
+            Map<String, Object> data = yamlMapper.readValue(new File(filePath), Map.class);
+            Object value = data.get(key);
+            return value != null ? value.toString() : null;
+        } catch (IOException e) {
+            Print.error("Failed to get key from YAML file: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static boolean set(String filePath, String key, Object value) {
+        try {
+            Map<String, Object> data;
+            if (new File(filePath).exists()) {
+                data = yamlMapper.readValue(new File(filePath), Map.class);
+            } else {
+                data = new java.util.HashMap<>();
+            }
+            data.put(key, value);
+            yamlMapper.writeValue(new File(filePath), data);
+            return true;
+        } catch (IOException e) {
+            Print.error("Failed to set key in YAML file: " + e.getMessage());
+            return false;
+        }
+    }
 }

@@ -115,4 +115,34 @@ public class Toml {
             Print.error("Failed to convert TOML to YAML: " + e.getMessage());
         }
     }
+    
+    @SuppressWarnings("unchecked")
+    public static String get(String filePath, String key) {
+        try {
+            Map<String, Object> data = tomlMapper.readValue(new File(filePath), Map.class);
+            Object value = data.get(key);
+            return value != null ? value.toString() : null;
+        } catch (IOException e) {
+            Print.error("Failed to get key from TOML file: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static boolean set(String filePath, String key, Object value) {
+        try {
+            Map<String, Object> data;
+            if (new File(filePath).exists()) {
+                data = tomlMapper.readValue(new File(filePath), Map.class);
+            } else {
+                data = new java.util.HashMap<>();
+            }
+            data.put(key, value);
+            tomlMapper.writeValue(new File(filePath), data);
+            return true;
+        } catch (IOException e) {
+            Print.error("Failed to set key in TOML file: " + e.getMessage());
+            return false;
+        }
+    }
 }

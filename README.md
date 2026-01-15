@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Kush-ShuL:RainbowLib:1.1.1'
+    implementation 'com.github.Kush-ShuL:RainbowLib:1.2.0'
 }
 ```
 
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-        implementation 'com.github.Kush-ShuL:RainbowLib:1.1.1'
+        implementation 'com.github.Kush-ShuL:RainbowLib:1.2.0'
 }
 ```
 
@@ -41,7 +41,7 @@ dependencies {
     <dependency>
         <groupId>com.github.Kush-ShuL</groupId>
         <artifactId>RainbowLib</artifactId>
-        <version>1.1.1</version>
+        <version>1.2.0</version>
     </dependency>
 </dependencies>
 ```
@@ -100,6 +100,8 @@ dependencies {
 - `Json.fromJsonString(String jsonString, Class<T> clazz)` - JSON字符串转对象
 - `Json.toMap(Object obj)` - 对象转Map
 - `Json.fromMap(Map<String, Object> map, Class<T> clazz)` - Map转对象
+- `Json.get(String filePath, String key)` - 获取单个值
+- `Json.set(String filePath, String key, Object value)` - 设置单个值
 
 ### 📝 YAML处理 (Configs.Yaml)
 完整的YAML读写和处理功能：
@@ -111,6 +113,8 @@ dependencies {
 - `Yaml.fromMap(Map<String, Object> map, Class<T> clazz)` - Map转对象
 - `Yaml.convertJsonToYaml(String jsonFilePath, String yamlFilePath)` - JSON转YAML
 - `Yaml.convertYamlToJson(String yamlFilePath, String jsonFilePath)` - YAML转JSON
+- `Yaml.get(String filePath, String key)` - 获取单个值
+- `Yaml.set(String filePath, String key, Object value)` - 设置单个值
 
 ### ⚙️ Properties处理 (Configs.Properties)
 Java Properties文件处理功能：
@@ -136,6 +140,8 @@ TOML配置文件处理功能：
 - `Toml.convertTomlToJson(String tomlFilePath, String jsonFilePath)` - TOML转JSON
 - `Toml.convertYamlToToml(String yamlFilePath, String tomlFilePath)` - YAML转TOML
 - `Toml.convertTomlToYaml(String tomlFilePath, String yamlFilePath)` - TOML转YAML
+- `Toml.get(String filePath, String key)` - 获取单个值
+- `Toml.set(String filePath, String key, Object value)` - 设置单个值
 
 ### 📄 CFG处理 (Configs.Cfg)
 简单配置文件（键值对格式）处理功能：
