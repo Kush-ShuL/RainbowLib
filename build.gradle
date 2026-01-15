@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'top.mc_plfd_host'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -19,6 +20,53 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Rainbow Utils'
+                description = 'A Java utility library providing algorithms, configurations, security, and logging features'
+                url = 'https://github.com/mc-plfd-host/rainbow'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License v3.0'
+                        url = 'https://www.gnu.org/licenses/lgpl-3.0.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'mc-plfd-host'
+                        name = 'MC PLFD Host'
+                        email = 'mc_plfd_host@example.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git@github.com:mc-plfd-host/rainbow.git'
+                    developerConnection = 'scm:git@github.com:mc-plfd-host/rainbow.git'
+                    url = 'https://github.com/mc-plfd-host/rainbow'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = 'github'
+            def githubRepo = System.env.GITHUB_REPOSITORY ?: 'owner:repo'
+            url = 'https://maven.pkg.github.com/' + githubRepo.replace('/', ':')
+            credentials {
+                username = System.env.USERNAME ?: 'placeholder'
+                password = System.env.TOKEN ?: 'placeholder'
+            }
+        }
+    }
 }
 
 test {
