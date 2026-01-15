@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.github.kush-shul'
+group = 'com.github.Kush-ShuL'
 version = '1.0.0'
 
 repositories {
@@ -43,15 +43,15 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = 'mc-plfd-host'
-                        name = 'MC PLFD Host'
-                        email = 'mc_plfd_host@example.com'
+                        id = 'Kush-ShuL'
+                        name = 'Kush-ShuL'
+                        email = 'Kush-ShuL@example.com'
                     }
                 }
                 scm {
-                    connection = 'scm:git@github.com:mc-plfd-host/rainbow.git'
-                    developerConnection = 'scm:git@github.com:mc-plfd-host/rainbow.git'
-                    url = 'https://github.com/mc-plfd-host/rainbow'
+                    connection = 'scm:git@github.com:Kush-ShuL/RainbowLib.git'
+                    developerConnection = 'scm:git@github.com:Kush-ShuL/RainbowLib.git'
+                    url = 'https://github.com/Kush-ShuL/RainbowLib'
                 }
             }
         }
