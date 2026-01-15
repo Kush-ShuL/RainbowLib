@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Kush-ShuL:RainbowLib:1.0.1'
+    implementation 'com.github.Kush-ShuL:RainbowLib:1.1.1'
 }
 ```
 
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-        implementation 'com.github.Kush-ShuL:RainbowLib:1.0.1'
+        implementation 'com.github.Kush-ShuL:RainbowLib:1.1.1'
 }
 ```
 
@@ -41,7 +41,7 @@ dependencies {
     <dependency>
         <groupId>com.github.Kush-ShuL</groupId>
         <artifactId>RainbowLib</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.1</version>
     </dependency>
 </dependencies>
 ```
