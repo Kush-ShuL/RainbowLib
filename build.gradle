@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'top.mc_plfd_host'
+group = 'com.github.kush-shul'
 version = '1.0.0'
 
 repositories {
