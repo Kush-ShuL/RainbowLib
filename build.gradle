@@ -59,8 +59,7 @@ publishing {
     repositories {
         maven {
             name = 'github'
-            def githubRepo = System.env.GITHUB_REPOSITORY ?: 'owner:repo'
-            url = 'https://maven.pkg.github.com/' + githubRepo.replace('/', ':')
+            url = 'https://maven.pkg.github.com/Kush-ShuL/RainbowLib'
             credentials {
                 username = System.env.USERNAME ?: 'placeholder'
                 password = System.env.TOKEN ?: 'placeholder'
