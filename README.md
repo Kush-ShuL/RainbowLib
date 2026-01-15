@@ -2,6 +2,58 @@
 
 一个简化Java开发的工具包，提供打印、JSON和YAML处理功能。
 
+## 安装
+
+### 📦 JitPack（推荐）
+
+**Gradle (Kotlin DSL)**
+```kotlin
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Kush-ShuL:RainbowLib:v1.0.0'
+}
+```
+
+**Gradle (Groovy)**
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Kush-ShuL:RainbowLib:v1.0.0'
+}
+```
+
+**Maven**
+```xml
+<repositories>
+    <repository>
+        <id>jitpack</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.Kush-ShuL</groupId>
+        <artifactId>RainbowLib</artifactId>
+        <version>v1.0.0</version>
+    </dependency>
+</dependencies>
+```
+
+### 📥 直接下载JAR
+
+从 [GitHub Releases](https://github.com/Kush-ShuL/RainbowLib/releases) 下载JAR文件，添加到项目的classpath中。
+
+### 🐋 Maven Central（即将推出）
+
+未来将发布到Maven Central仓库。
+
 ## 功能特性
 
 ### 🖨️ 打印功能 (Messages.Print)

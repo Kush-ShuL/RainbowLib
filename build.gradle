@@ -2,13 +2,13 @@ plugins {
     id 'java'
 }
 
-group = 'com.github.Kush-ShuL'
+group = 'top.mc_plfd_host'
 version = '1.0.0'
 
 repositories {
     mavenCentral()
 }
-
+    
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2'
