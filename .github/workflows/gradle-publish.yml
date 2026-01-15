@@ -1,11 +1,6 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
-# For more information see: `https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle`
+# This workflow builds the project and creates a release with JAR files
 
-name: Gradle Package
+name: Build and Release
 
 on:
   release:
@@ -16,9 +11,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
     - uses: actions/checkout@v4
@@ -28,8 +20,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        server-id: github
-        settings-path: ${{ github.workspace }}
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
@@ -37,8 +27,20 @@ jobs:
     - name: Build with Gradle
       run: chmod +x ./gradlew && ./gradlew build
 
-    - name: Publish to GitHub Packages
-      run: chmod +x ./gradlew && ./gradlew publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: Rainbow-1.0.0.jar
+        path: build/libs/Rainbow-1.0.0.jar
+
+    - name: Upload Sources JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: Rainbow-1.0.0-sources.jar
+        path: build/libs/Rainbow-1.0.0-sources.jar
+
+    - name: Upload Javadoc JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: Rainbow-1.0.0-javadoc.jar
+        path: build/libs/Rainbow-1.0.0-javadoc.jar

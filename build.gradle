@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'maven-publish'
 }
 
 group = 'com.github.Kush-ShuL'
@@ -25,47 +24,6 @@ dependencies {
 java {
     withJavadocJar()
     withSourcesJar()
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            pom {
-                name = 'Rainbow Utils'
-                description = 'A Java utility library providing algorithms, configurations, security, and logging features'
-                url = 'https://github.com/mc-plfd-host/rainbow'
-                licenses {
-                    license {
-                        name = 'GNU Lesser General Public License v3.0'
-                        url = 'https://www.gnu.org/licenses/lgpl-3.0.html'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'Kush-ShuL'
-                        name = 'Kush-ShuL'
-                        email = 'Kush-ShuL@example.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git@github.com:Kush-ShuL/RainbowLib.git'
-                    developerConnection = 'scm:git@github.com:Kush-ShuL/RainbowLib.git'
-                    url = 'https://github.com/Kush-ShuL/RainbowLib'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            name = 'github'
-            url = 'https://maven.pkg.github.com/Kush-ShuL/RainbowLib'
-            credentials {
-                username = System.env.USERNAME ?: 'placeholder'
-                password = System.env.TOKEN ?: 'placeholder'
-            }
-        }
-    }
 }
 
 test {
