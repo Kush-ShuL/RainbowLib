@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Kush-ShuL:RainbowLib:v1.0.0'
+    implementation 'com.github.Kush-ShuL:RainbowLib:1.0.1'
 }
 ```
 
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Kush-ShuL:RainbowLib:v1.0.0'
+        implementation 'com.github.Kush-ShuL:RainbowLib:1.0.1'
 }
 ```
 
@@ -41,7 +41,7 @@ dependencies {
     <dependency>
         <groupId>com.github.Kush-ShuL</groupId>
         <artifactId>RainbowLib</artifactId>
-        <version>v1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
@@ -49,10 +49,6 @@ dependencies {
 ### 📥 直接下载JAR
 
 从 [GitHub Releases](https://github.com/Kush-ShuL/RainbowLib/releases) 下载JAR文件，添加到项目的classpath中。
-
-### 🐋 Maven Central（即将推出）
-
-未来将发布到Maven Central仓库。
 
 ## 功能特性
 

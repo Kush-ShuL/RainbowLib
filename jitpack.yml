@@ -1,2 +1,6 @@
 jdk:
-  - openjdk11
+  - openjdk11  # 或者 openjdk17
+
+before_install:
+  - sdk install java 11.0.22-tem
+  - sdk use java 11.0.22-tem
